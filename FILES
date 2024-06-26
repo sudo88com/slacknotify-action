@@ -1,8 +1,7 @@
-   550299      4 drwxr-xr-x   5 root     root         4096 Jun 26 16:53 .
+   550299      4 drwxr-xr-x   5 root     root         4096 Jun 26 16:54 .
    550359      4 -rw-r--r--   1 root     root           96 Jun 26 16:49 ./.yamllint
    550368      0 -rw-r--r--   1 root     root            0 Jun 26 16:53 ./.vale.ini
-   550366      0 -rw-r--r--   1 root     root            0 Jun 26 16:54 ./FILES
-   550367      4 -rw-r--r--   1 root     root         2350 Jun 26 16:52 ./Makefile
+   550366      0 -rw-r--r--   1 root     root            0 Jun 26 17:01 ./FILES
    550360      4 -rw-r--r--   1 root     root         1076 Jun 26 16:49 ./LICENSE
    550363      4 drwxr-xr-x   2 root     root         4096 Jun 26 16:49 ./img
    550364     44 -rw-r--r--   1 root     root        44225 Jun 26 16:49 ./img/screen1.png
@@ -12,6 +11,6 @@
    550361      4 -rw-r--r--   1 root     root         2350 Jun 26 16:49 ./README.md
    550339      4 drwxr-xr-x   3 root     root         4096 Jun 26 16:49 ./.github
    550354      4 drwxr-xr-x   2 root     root         4096 Jun 26 16:51 ./.github/workflows
-   550355      4 -rw-r--r--   1 root     root          858 Jun 26 16:51 ./.github/workflows/commonlint.yml
+   550355      4 -rw-r--r--   1 root     root          858 Jun 26 17:01 ./.github/workflows/commonlint.yml
    550356      4 -rw-r--r--   1 root     root          442 Jun 26 16:52 ./.github/workflows/test_fail.yml
    550357      4 -rw-r--r--   1 root     root          362 Jun 26 16:49 ./.github/workflows/test_success.yml
