@@ -1,10 +1,16 @@
 ---
 name: 'SlackNotify Action'
-description: 'Send notifications to Slack from GitHub Actions'
+description: 'A GitHub Action for sending notifications to Slack'
+author: 'Anthony Yung <antyung41@gmail.com>'
+branding:
+  icon: 'activity'
+  color: 'white'
+
 inputs:
   webhook_url:
     description: 'The Slack webhook URL'
     required: true
+
 runs:
   using: 'composite'
   steps:
@@ -18,16 +24,9 @@ runs:
         GITHUB_WORKFLOW: ${{ github.workflow }}
         GITHUB_JOB_STATUS: ${{ job.status }}
         GITHUB_ACTOR: ${{ github.actor }}
-        GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }} # Does not show in workflow dispatch
+        GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         GITHUB_REF: ${{ github.ref }}
-        GITHUB_COMMIT_TIMESTAMP: ${{ github.event.head_commit.timestamp }} # Does not show in workflow dispatch
+        GITHUB_COMMIT_TIMESTAMP: ${{ github.event.head_commit.timestamp }}
         GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         GITHUB_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
         GITHUB_REPOSITORY_NAME: ${{ github.repository }}
-
-icon: 'activity'
-color: 'white'
-
-branding:
-  icon: 'activity'
-  color: 'white'

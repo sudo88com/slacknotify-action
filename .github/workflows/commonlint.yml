@@ -1,0 +1,33 @@
+---
+name: CommonLint Workflow
+
+on: [push, pull_request]
+
+jobs:
+  commonlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: CommonLint Bash (.sh) files
+        uses: sudo88com/commonlint-action/lint-bash@v1
+
+      - name: CommonLint ENV (.env) files
+        uses: sudo88com/commonlint-action/lint-env@v1
+
+      - name: CommonLint Make (Makefile) files
+        uses: sudo88com/commonlint-action/lint-md@v1
+
+      - name: CommonLint Markdown (.md) files
+        uses: sudo88com/commonlint-action/lint-yaml@v1
+
+      - name: CommonLint YAML (.yaml) (.yml) files
+        uses: sudo88com/commonlint-action/lint-yaml@v1
+
+      - name: Run Slack Notification
+        if: always()
+        uses: sudo88com/slacknotify-action@v1
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
