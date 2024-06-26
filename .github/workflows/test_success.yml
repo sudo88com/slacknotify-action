@@ -1,0 +1,19 @@
+---
+name: Test Slack Notification (Success)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Slack Notification
+        if: always()
+        uses: sudo88com/slacknotify-action@v1
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -1,0 +1,33 @@
+---
+name: 'SlackNotify Action'
+description: 'Send notifications to Slack from GitHub Actions'
+inputs:
+  webhook_url:
+    description: 'The Slack webhook URL'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Send Slack Notification
+      shell: bash
+      run: |
+        chmod +x ./notify_slack.sh
+        ./notify_slack.sh send
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.webhook_url }}
+        GITHUB_WORKFLOW: ${{ github.workflow }}
+        GITHUB_JOB_STATUS: ${{ job.status }}
+        GITHUB_ACTOR: ${{ github.actor }}
+        GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }} # Does not show in workflow dispatch
+        GITHUB_REF: ${{ github.ref }}
+        GITHUB_COMMIT_TIMESTAMP: ${{ github.event.head_commit.timestamp }} # Does not show in workflow dispatch
+        GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        GITHUB_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
+        GITHUB_REPOSITORY_NAME: ${{ github.repository }}
+
+icon: 'activity'
+color: 'white'
+
+branding:
+  icon: 'activity'
+  color: 'white'
