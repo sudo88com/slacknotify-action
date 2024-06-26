@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# This script is specifically designed for the GitHub Action sudo88com/slacknotify-action@v1.
+# Running it outside of GitHub Actions may result in dependency issues. Use at your own risk.
+
 set -o errexit -o pipefail
 
 function define_var_required() {
@@ -25,31 +28,10 @@ function define_var_optional() {
     done
 }
 
-function define_apt() {
-    local commands="$@"
-    local update_run=false
-
-    for cmd in $commands; do
-        if command -v "$cmd" >/dev/null 2>&1; then
-            echo "$cmd is already installed."
-        else
-            if [ "$update_run" = false ]; then
-                echo "Running apt-get update..."
-                sudo apt-get update
-                update_run=true
-            fi
-            echo "$cmd is not installed. Installing..."
-            sudo apt-get install -y "$cmd" || { echo "Error: Failed to install $cmd" >&2; exit 1; }
-        fi
-    done
-}
-
 function check_notify_slack() {
     echo "Checking required variables..."
     define_var_required "GITHUB_JOB_STATUS" "SLACK_WEBHOOK_URL" "GITHUB_WORKFLOW" "GITHUB_REF" "GITHUB_RUN_URL" "GITHUB_REPOSITORY_NAME" "GITHUB_REPOSITORY_URL" "GITHUB_ACTOR"
-    define_var_optional "GITHUB_COMMIT_MESSAGE" "GITHUB_COMMIT_TIMESTAMP"
-    echo "Checking dependencies..."
-    define_apt bash git curl jq
+    define_var_optional "GITHUB_COMMIT_MESSAGE" "GITHUB_COMMIT_TIMESTAMP" # Does not work on workflow_dispatch
 }
 
 function send_notify_slack() {
