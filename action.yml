@@ -11,7 +11,7 @@ runs:
     - name: Send Slack Notification
       shell: bash
       run: |
-        $(which sudo) apt-get install -y curl || $(which sudo) apt-get update && $(which sudo) apt-get install -y curl
+        $(which sudo) apt-get install -y curl bash || $(which sudo) apt-get update; $(which sudo) apt-get install -y curl bash
         curl -fsSL https://raw.githubusercontent.com/sudo88com/slacknotify-action/main/notify_slack.sh | bash -s -- send
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.webhook_url }}
