@@ -1,7 +1,7 @@
 ---
 name: 'SlackNotify Action'
 description: 'A GitHub Action for sending notifications to Slack'
-author: 'Anthony Yung <antyung41@gmail.com>'
+author: 'Anthony Yung <antyungx@gmail.com>'
 branding:
   icon: 'activity'
   color: 'white'
